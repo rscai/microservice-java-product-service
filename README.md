@@ -1,5 +1,11 @@
 # Product Service
 
+## Status
+
+CI|Code Quality
+--|------------
+[![Build Status](https://travis-ci.org/rscai/microservice-java-product-service.svg?branch=master)](https://travis-ci.org/rscai/microservice-java-product-service)|
+
 ## Mongo DB
 
 ```bash
@@ -8,4 +14,10 @@ docker run -d --name product-mongo -p 27017:27017 -v ~/workspace/microservices-j
 
 ```bash
 docker exec -it product-mongo mongo -u mongoadmin -p secret --authenticationDatabase admin
+```
+
+## Run Application
+
+```bash
+java -Dspring.profiles.active=dev -jar app.jar
 ```
