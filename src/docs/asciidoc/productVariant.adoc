@@ -1,0 +1,112 @@
+= Product Variant
+
+== Model
+
+.ProductVariant 
+|===
+|Field|Type|Comment
+
+|id
+|String
+|unique identifier
+
+|inventoryItemId
+|String
+|item id in inventory service
+
+|images
+|List<ProductImage>
+|
+
+|createdAt
+|Date
+|
+
+|updatedAt
+|Date
+|
+|===
+
+== Create
+
+=== Request
+
+include::{snippets}/productVariant/create/http-request.adoc[]
+
+*Request Fields:*
+
+include::{snippets}/productVariant/create/request-fields.adoc[]
+
+=== Response
+
+include::{snippets}/productVariant/create/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/productVariant/create/response-fields.adoc[]
+
+== Update
+
+=== Request
+
+include::{snippets}/productVariant/update/http-request.adoc[]
+
+*Request Fields:*
+
+include::{snippets}/productVariant/update/request-fields.adoc[]
+
+=== Response
+
+include::{snippets}/productVariant/update/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/productVariant/update/response-fields.adoc[]
+
+== Update Images
+
+=== Request
+
+include::{snippets}/productVariant/updateImages/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/productVariant/updateImages/http-response.adoc[]
+
+== Delete
+
+=== Request
+
+include::{snippets}/productVariant/delete/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/productVariant/delete/http-response.adoc[]
+
+== Get One
+
+=== Request
+
+include::{snippets}/productVariant/getOne/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/productVariant/getOne/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/productVariant/getOne/response-fields.adoc[]
+
+== Get Images
+
+=== Request
+
+include::{snippets}/productVariant/getImages/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/productVariant/getImages/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/productVariant/getImages/response-fields.adoc[]
