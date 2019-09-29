@@ -1,0 +1,81 @@
+= ProductImage
+
+== Model
+
+.ProductImage model
+|===
+|Field|Type|Comment
+
+|src
+|String
+|URL of image
+
+|createdAt
+|Date
+|timestamp of resource created
+
+|updatedAt
+|Date
+|timestamp of resource last updated
+|===
+
+== Create
+
+=== Request 
+
+include::{snippets}/productImage/create/http-request.adoc[]
+
+*Request Fields:*
+
+include::{snippets}/productImage/create/request-fields.adoc[]
+
+=== Response
+
+include::{snippets}/productImage/create/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/productImage/create/response-fields.adoc[]
+
+== Update
+
+=== Request
+
+include::{snippets}/productImage/update/http-request.adoc[]
+
+*Request Fields:*
+
+include::{snippets}/productImage/update/request-fields.adoc[]
+
+=== Response
+
+include::{snippets}/productImage/update/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/productImage/update/response-fields.adoc[]
+
+== Delete
+
+=== Request
+
+include::{snippets}/productImage/delete/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/productImage/delete/http-response.adoc[]
+
+== Get One
+
+=== Request
+
+include::{snippets}/productImage/getOne/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/productImage/getOne/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/productImage/getOne/response-fields.adoc[]
+

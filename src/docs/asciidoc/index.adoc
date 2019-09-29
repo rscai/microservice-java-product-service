@@ -62,56 +62,8 @@ use of HTTP status codes.
 
 == Resources
 
-=== ProductImage
+:leveloffset: 2
 
-==== Model
+include::productImage.adoc[]
 
-.ProductImage model
-|===
-|Field|Type|Comment
-
-|src
-|String
-|URL of image
-
-|createdAt
-|Date
-|timestamp of resource created
-
-|updatedAt
-|Date
-|timestamp of resource last updated
-|===
-
-==== Create
-
-===== Request 
-
-include::{snippets}/productImage/create/http-request.adoc[]
-
-*Request Fields:*
-
-include::{snippets}/productImage/create/request-fields.adoc[]
-
-===== Response
-
-include::{snippets}/productImage/create/http-response.adoc[]
-
-*Response Fields:*
-
-include::{snippets}/productImage/create/response-fields.adoc[]
-
-==== Get One
-
-===== Request
-
-include::{snippets}/productImage/getOne/http-request.adoc[]
-
-===== Response
-
-include::{snippets}/productImage/getOne/http-response.adoc[]
-
-*Response Fields:*
-
-include::{snippets}/productImage/getOne/response-fields.adoc[]
-
+:leveloffset: 0
