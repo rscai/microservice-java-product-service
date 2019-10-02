@@ -1,0 +1,152 @@
+= Product
+
+== Model
+
+|===
+|Field|Type|Comment
+
+|id
+|String
+|
+
+|title
+|String
+|
+
+|tags
+|List<String>
+|tag list
+
+|images
+|List<ProductImage>
+|
+
+|variants
+|List<ProductVariant>
+|
+
+|createdAt
+|Date
+|
+
+|updatedAt
+|Date
+|
+|===
+
+== Create
+
+Endpoint `products`.
+
+=== Request
+
+include::{snippets}/product/create/http-request.adoc[]
+
+*Request Fields:*
+
+include::{snippets}/product/create/request-fields.adoc[]
+
+=== Response
+
+include::{snippets}/product/create/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/product/create/response-fields.adoc[]
+
+== Get One
+
+include::{snippets}/product/getOne/path-parameters.adoc[]
+
+=== Request
+
+include::{snippets}/product/getOne/http-request.adoc[]
+
+
+=== Response
+
+include::{snippets}/product/getOne/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/product/getOne/response-fields.adoc[]
+
+== Get Images
+
+include::{snippets}/product/getImages/path-parameters.adoc[]
+
+=== Request
+
+include::{snippets}/product/getImages/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/product/getImages/http-response.adoc[]
+
+== Get Variants
+
+include::{snippets}/product/getVariants/path-parameters.adoc[]
+
+=== Request
+
+include::{snippets}/product/getVariants/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/product/getVariants/http-response.adoc[]
+
+== Update
+
+include::{snippets}/product/update/path-parameters.adoc[]
+
+=== Request
+
+include::{snippets}/product/update/http-request.adoc[]
+
+*Request Fields:*
+
+include::{snippets}/product/update/request-fields.adoc[]
+
+=== Response
+
+include::{snippets}/product/update/http-response.adoc[]
+
+*Response Fields:*
+
+include::{snippets}/product/update/request-fields.adoc[]
+
+== Update Images
+
+include::{snippets}/product/updateImages/path-parameters.adoc[]
+
+=== Request
+
+include::{snippets}/product/updateImages/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/product/updateImages/http-response.adoc[]
+
+== Update Variants
+
+include::{snippets}/product/updateVariants/path-parameters.adoc[]
+
+=== Request
+
+include::{snippets}/product/updateVariants/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/product/updateVariants/http-response.adoc[]
+
+== Delete
+
+include::{snippets}/product/delete/path-parameters.adoc[]
+
+=== Request
+
+include::{snippets}/product/delete/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/product/delete/http-response.adoc[]

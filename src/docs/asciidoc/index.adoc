@@ -1,10 +1,9 @@
 = RESTful Notes API Guide
-Andy Wilkinson;
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
 :toc: left
-:toclevels: 4
+:toclevels: 3
 :sectlinks:
 :operation-curl-request-title: Example request
 :operation-http-response-title: Example response
@@ -66,5 +65,6 @@ use of HTTP status codes.
 
 include::productImage.adoc[]
 include::productVariant.adoc[]
+include::product.adoc[]
 
 :leveloffset: 0
