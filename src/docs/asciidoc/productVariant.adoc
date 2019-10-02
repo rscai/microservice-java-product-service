@@ -107,6 +107,3 @@ include::{snippets}/productVariant/getImages/http-request.adoc[]
 
 include::{snippets}/productVariant/getImages/http-response.adoc[]
 
-*Response Fields:*
-
-include::{snippets}/productVariant/getImages/response-fields.adoc[]
