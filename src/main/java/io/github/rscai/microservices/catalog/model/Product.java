@@ -1,4 +1,4 @@
-package io.github.rscai.microservices.product.model;
+package io.github.rscai.microservices.catalog.model;
 
 import java.util.Date;
 import java.util.List;
@@ -11,11 +11,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @Document
-public class ProductVariant {
+public class Product {
 
   @Id
   private String id;
-  private String inventoryItemId;
+  private String title;
+  private List<String> tags;
   @DBRef
   private List<ProductImage> images;
   private Date createdAt;

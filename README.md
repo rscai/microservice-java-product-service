@@ -4,7 +4,7 @@
 
 CI|Code Quality
 --|------------
-[![Build Status](https://travis-ci.org/rscai/microservice-java-product-service.svg?branch=master)](https://travis-ci.org/rscai/microservice-java-product-service)|
+[![Build Status](https://travis-ci.org/rscai/microservices-catalog.svg?branch=master)](https://travis-ci.org/rscai/microservices-catalog)|
 
 ## Mongo DB
 

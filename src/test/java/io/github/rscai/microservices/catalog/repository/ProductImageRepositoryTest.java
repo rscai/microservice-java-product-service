@@ -1,10 +1,10 @@
-package io.github.rscai.microservices.product.repository;
+package io.github.rscai.microservices.catalog.repository;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import io.github.rscai.microservices.product.model.ProductImage;
+import io.github.rscai.microservices.catalog.model.ProductImage;
 import java.util.Date;
 import org.junit.Test;
 import org.junit.runner.RunWith;

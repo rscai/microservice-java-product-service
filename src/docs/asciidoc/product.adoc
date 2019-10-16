@@ -21,10 +21,6 @@
 |List<ProductImage>
 |
 
-|variants
-|List<ProductVariant>
-|
-
 |createdAt
 |Date
 |
@@ -83,18 +79,6 @@ include::{snippets}/product/getImages/http-request.adoc[]
 
 include::{snippets}/product/getImages/http-response.adoc[]
 
-== Get Variants
-
-include::{snippets}/product/getVariants/path-parameters.adoc[]
-
-=== Request
-
-include::{snippets}/product/getVariants/http-request.adoc[]
-
-=== Response
-
-include::{snippets}/product/getVariants/http-response.adoc[]
-
 == Update
 
 include::{snippets}/product/update/path-parameters.adoc[]
@@ -126,18 +110,6 @@ include::{snippets}/product/updateImages/http-request.adoc[]
 === Response
 
 include::{snippets}/product/updateImages/http-response.adoc[]
-
-== Update Variants
-
-include::{snippets}/product/updateVariants/path-parameters.adoc[]
-
-=== Request
-
-include::{snippets}/product/updateVariants/http-request.adoc[]
-
-=== Response
-
-include::{snippets}/product/updateVariants/http-response.adoc[]
 
 == Delete
 

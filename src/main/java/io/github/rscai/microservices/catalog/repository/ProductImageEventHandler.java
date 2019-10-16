@@ -1,6 +1,6 @@
-package io.github.rscai.microservices.product.repository;
+package io.github.rscai.microservices.catalog.repository;
 
-import io.github.rscai.microservices.product.model.ProductVariant;
+import io.github.rscai.microservices.catalog.model.ProductImage;
 import java.util.Date;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +10,14 @@ import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.stereotype.Component;
 
 @Component
-@RepositoryEventHandler(ProductVariant.class)
-public class ProductVariantEventHandler {
+@RepositoryEventHandler(ProductImage.class)
+public class ProductImageEventHandler {
 
   @Autowired
-  private ProductVariantRepository entityRepository;
+  private ProductImageRepository entityRepository;
 
   @HandleBeforeCreate
-  public void handleProductVariantCreate(ProductVariant entity) {
+  public void handleProductImageCreate(ProductImage entity) {
     if (entity.getCreatedAt() == null) {
       entity.setCreatedAt(new Date());
     }
@@ -25,8 +25,8 @@ public class ProductVariantEventHandler {
   }
 
   @HandleBeforeSave
-  public void handleProductVariantBeforeSave(ProductVariant entity) {
-    final Optional<ProductVariant> existedEntity = entityRepository.findById(entity.getId());
+  public void handleProductImageBeforeSave(ProductImage entity) {
+    final Optional<ProductImage> existedEntity = entityRepository.findById(entity.getId());
     if (existedEntity.isPresent()) {
       entity.setCreatedAt(existedEntity.get().getCreatedAt());
     }

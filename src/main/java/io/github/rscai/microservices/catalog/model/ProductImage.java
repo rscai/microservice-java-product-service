@@ -1,4 +1,4 @@
-package io.github.rscai.microservices.product.model;
+package io.github.rscai.microservices.catalog.model;
 
 import java.util.Date;
 import lombok.Getter;

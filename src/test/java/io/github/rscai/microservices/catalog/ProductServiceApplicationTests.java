@@ -1,4 +1,4 @@
-package io.github.rscai.microservices.product;
+package io.github.rscai.microservices.catalog;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

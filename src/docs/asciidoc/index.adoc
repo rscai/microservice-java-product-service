@@ -64,7 +64,6 @@ use of HTTP status codes.
 :leveloffset: 2
 
 include::productImage.adoc[]
-include::productVariant.adoc[]
 include::product.adoc[]
 
 :leveloffset: 0

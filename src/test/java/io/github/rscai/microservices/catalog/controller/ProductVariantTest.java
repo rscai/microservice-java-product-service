@@ -1,4 +1,4 @@
-package io.github.rscai.microservices.product.controller;
+package io.github.rscai.microservices.catalog.controller;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -20,9 +20,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.rscai.microservices.product.ProductServiceApplication;
-import io.github.rscai.microservices.product.model.ProductImage;
-import io.github.rscai.microservices.product.repository.ProductImageRepository;
+import io.github.rscai.microservices.catalog.ProductServiceApplication;
+import io.github.rscai.microservices.catalog.model.ProductImage;
+import io.github.rscai.microservices.catalog.repository.ProductImageRepository;
 import java.util.Date;
 import java.util.stream.Stream;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
