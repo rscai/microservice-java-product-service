@@ -138,7 +138,7 @@ public class ProductTest {
         .andExpect(jsonPath("$.createdAt", notNullValue()))
         .andExpect(jsonPath("$.updatedAt", notNullValue()))
         .andExpect(jsonPath("$._links.images", notNullValue()))
-        .andDo(document("catalog/create", links(), requestFields(
+        .andDo(document("product/create", links(), requestFields(
             fieldWithPath("images").type(JsonFieldType.ARRAY)
                 .description("links of referred ProductImage")),responseFields()))
         .andReturn().getResponse().getContentAsString();
@@ -152,12 +152,12 @@ public class ProductTest {
         .andExpect(jsonPath("$.createdAt", notNullValue()))
         .andExpect(jsonPath("$.updatedAt", notNullValue()))
         .andExpect(jsonPath("$._links.images", notNullValue()))
-        .andDo(document("catalog/getOne", links(),
+        .andDo(document("product/getOne", links(),
             pathParameters(parameterWithName("id").description("catalog's id")), responseFields()));
 
     mvc.perform(get(ENDPOINT + "/{id}/images", productId).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk()).andExpect(jsonPath("$._embedded.productImages", hasSize(2)))
-        .andDo(document("catalog/getImages",
+        .andDo(document("product/getImages",
             pathParameters(parameterWithName("id").description("catalog's id"))));
   }
 
@@ -191,7 +191,7 @@ public class ProductTest {
         .contentType(MediaType.APPLICATION_JSON).content(String.format(
             "{\"title\":\"%s\",\"tags\":[\"%s\"]}",
             newTitle, MOBILE)))
-        .andExpect(status().isOk()).andDo(document("catalog/update", links(),
+        .andExpect(status().isOk()).andDo(document("product/update", links(),
         pathParameters(parameterWithName("id").description("catalog's id")), PayloadDocumentation
             .requestFields(
                 fieldWithPath("title").type(JsonFieldType.STRING).description("catalog's title"),
@@ -205,7 +205,7 @@ public class ProductTest {
     mvc.perform(put(ENDPOINT + "/{id}/images", productId)
         .contentType(MediaType.parseMediaType("text/uri-list"))
         .content(imageBLink + "\n" + imageCLink)).andExpect(status().isNoContent()).andDo(
-        document("catalog/updateImages",
+        document("product/updateImages",
             pathParameters(parameterWithName("id").description("catalog's id"))));
 
     mvc.perform(get(ENDPOINT + "/{id}/images", productId).accept(MediaType.APPLICATION_JSON))
@@ -238,7 +238,7 @@ public class ProductTest {
         .reduce((first, second) -> second).orElse(null);
 
     mvc.perform(delete(ENDPOINT + "/{id}", productId)).andExpect(status().isNoContent()).andDo(
-        document("catalog/delete",
+        document("product/delete",
             pathParameters(parameterWithName("id").description("catalog's id"))));
 
     mvc.perform(get(ENDPOINT + "/{id}", productId)).andExpect(status().isNotFound());
