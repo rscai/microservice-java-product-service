@@ -13,7 +13,7 @@ Technical Debt|[![Technical Debt](https://sonarcloud.io/api/project_badges/measu
 ## Mongo DB
 
 ```bash
-docker run -d --name product-mongo -p 27017:27017 -v ~/workspace/microservices-java/product-mongo-data:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret mongo:3.4
+docker run -d --name catalog-mongo -p 27018:27017 -v ~/workspace/microservices-java/catalog-mongo-data:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret mongo:3.4
 ```
 
 ```bash
