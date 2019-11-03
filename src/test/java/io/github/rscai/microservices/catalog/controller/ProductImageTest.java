@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.rscai.microservices.catalog.ProductServiceApplication;
+import io.github.rscai.microservices.catalog.CatalogApplication;
 import io.github.rscai.microservices.catalog.model.ProductImage;
 import java.util.stream.Stream;
 import org.junit.Test;
@@ -45,7 +45,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @ActiveProfiles({"test"})
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = ProductServiceApplication.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = CatalogApplication.class)
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 public class ProductImageTest {

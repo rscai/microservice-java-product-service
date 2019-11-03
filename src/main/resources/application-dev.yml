@@ -1,5 +1,6 @@
 server:
   port: 8081
+  use-forward-headers: true
 spring:
   data:
     mongodb:
@@ -8,3 +9,7 @@ spring:
       username: mongoadmin
       password: secret
       authentication-database: admin
+eureka:
+  client:
+    serviceUrl: 
+      defaultZone: http://localhost:9001/eureka/
