@@ -24,8 +24,10 @@ import io.github.rscai.microservices.catalog.CatalogApplication;
 import io.github.rscai.microservices.catalog.RestDocsMockMvcConfiguration;
 import io.github.rscai.microservices.catalog.model.ProductImage;
 import io.github.rscai.microservices.catalog.repository.ProductImageRepository;
+import io.github.rscai.microservices.catalog.repository.ProductRepository;
 import java.util.Date;
 import java.util.stream.Stream;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +35,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.hypermedia.HypermediaDocumentation;
@@ -49,7 +50,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @Import(RestDocsMockMvcConfiguration.class)
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = CatalogApplication.class)
+@SpringBootTest(classes = CatalogApplication.class)
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 public class ProductTest {
@@ -62,6 +63,8 @@ public class ProductTest {
   private ObjectMapper objectMapper;
   @Autowired
   private ProductImageRepository imageRepository;
+  @Autowired
+  private ProductRepository productRepository;
 
   private String imageAId;
   private String imageBId;
@@ -119,6 +122,12 @@ public class ProductTest {
 
     imageCId = imageRepository.save(imageC).getId();
   }
+  
+  @After
+  public void tearDown() {
+    productRepository.deleteAll();
+    imageRepository.deleteAll();
+  }
 
   @Test
   public void testCreateAndGet() throws Exception {
@@ -134,7 +143,9 @@ public class ProductTest {
             .content(String.format(
                 "{\"title\":\"%s\",\"tags\":[\"%s\",\"%s\"],\"images\":[\"%s\",\"%s\"]}",
                 title, ELECTRONICS, MOBILE, imageALink, imageBLink)))
-        .andDo(print()).andExpect(status().isCreated()).andExpect(jsonPath("$.title", is(title)))
+        .andDo(print())
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.title", is(title)))
         .andExpect(jsonPath("$.createdAt", notNullValue()))
         .andExpect(jsonPath("$.updatedAt", notNullValue()))
         .andExpect(jsonPath("$._links.images", notNullValue()))
@@ -148,7 +159,8 @@ public class ProductTest {
         .reduce((first, second) -> second).orElse(null);
 
     mvc.perform(get(ENDPOINT + "/{id}", productId).accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk()).andExpect(jsonPath("$.title", is(title)))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.title", is(title)))
         .andExpect(jsonPath("$.createdAt", notNullValue()))
         .andExpect(jsonPath("$.updatedAt", notNullValue()))
         .andExpect(jsonPath("$._links.images", notNullValue()))
@@ -156,7 +168,8 @@ public class ProductTest {
             pathParameters(parameterWithName("id").description("catalog's id")), responseFields()));
 
     mvc.perform(get(ENDPOINT + "/{id}/images", productId).accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk()).andExpect(jsonPath("$._embedded.productImages", hasSize(2)))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$._embedded.productImages", hasSize(2)))
         .andDo(document("product/getImages",
             pathParameters(parameterWithName("id").description("catalog's id"))));
   }

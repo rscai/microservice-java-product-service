@@ -21,7 +21,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.rscai.microservices.catalog.CatalogApplication;
 import io.github.rscai.microservices.catalog.model.ProductImage;
+import io.github.rscai.microservices.catalog.repository.ProductImageRepository;
 import java.util.stream.Stream;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -29,7 +31,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.hypermedia.HypermediaDocumentation;
 import org.springframework.restdocs.hypermedia.LinkDescriptor;
@@ -45,7 +46,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @ActiveProfiles({"test"})
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = CatalogApplication.class)
+@SpringBootTest(classes = CatalogApplication.class)
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 public class ProductImageTest {
@@ -55,6 +56,8 @@ public class ProductImageTest {
   private MockMvc mvc;
   @Autowired
   private ObjectMapper objectMapper;
+  @Autowired
+  private ProductImageRepository imageRepository;
 
   private static LinksSnippet links(LinkDescriptor... descriptors) {
     return HypermediaDocumentation.links(halLinks(), linkWithRel("self").description("self link"),
@@ -76,6 +79,11 @@ public class ProductImageTest {
                 .description("timestamp of resource created"),
             fieldWithPath("updatedAt").type("Date")
                 .description("timestamp of resource updated")).and(descriptors);
+  }
+  
+  @After
+  public void tearDown() {
+    imageRepository.deleteAll();
   }
 
   @Test

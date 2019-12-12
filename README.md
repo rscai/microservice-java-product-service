@@ -17,7 +17,23 @@ docker run -d --name catalog-mongo -p 27018:27017 -v ~/workspace/microservices-j
 ```
 
 ```bash
-docker exec -it product-mongo mongo -u mongoadmin -p secret --authenticationDatabase admin
+docker exec -it catalog-mongo mongo -u mongoadmin -p secret --authenticationDatabase admin
+```
+
+```bash
+MongoDB shell version v3.4.23
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.4.23
+> show dbs
+admin  0.000GB
+local  0.000GB
+test   0.000GB
+> show collections;
+product
+productImage
+> db.product.find().limit(1);
+{ "_id" : ObjectId("5db3a5385cb95ce6e56a9248"), "title" : "iMac", "tags" : [ "mac", " apple" ], "images" : [ DBRef("productImage", ObjectId("5dabf9ab5cb95c4dad891a95")), DBRef("productImage", ObjectId("5dabf9a05cb95c4dad891a94")), DBRef("productImage", ObjectId("5dabf9845cb95c4dad891a92")), DBRef("productImage", ObjectId("5dabf9765cb95c4dad891a91")) ], "createdAt" : ISODate("2019-10-26T01:45:28.703Z"), "updatedAt" : ISODate("2019-11-03T09:31:00.103Z"), "_class" : "io.github.rscai.microservices.catalog.model.Product" }
+> 
 ```
 
 ## Run Application
