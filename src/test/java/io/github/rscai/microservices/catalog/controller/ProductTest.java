@@ -45,17 +45,22 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.restdocs.payload.PayloadDocumentation;
 import org.springframework.restdocs.payload.RequestFieldsSnippet;
 import org.springframework.restdocs.payload.ResponseFieldsSnippet;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+@ActiveProfiles("test")
 @Import(RestDocsMockMvcConfiguration.class)
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CatalogApplication.class)
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 @AutoConfigureRestDocs
 public class ProductTest {
 
   private static final String ENDPOINT = "/products";
+  private static final String SCOPE_CATALOG_READ = "SCOPE_catalog.read";
+  private static final String SCOPE_CATALOG_WRITE = "SCOPE_catalog.write";
 
   @Autowired
   private MockMvc mvc;
@@ -122,7 +127,7 @@ public class ProductTest {
 
     imageCId = imageRepository.save(imageC).getId();
   }
-  
+
   @After
   public void tearDown() {
     productRepository.deleteAll();
@@ -130,10 +135,11 @@ public class ProductTest {
   }
 
   @Test
+  @WithMockUser(username = "catalog_ops", authorities = {SCOPE_CATALOG_READ, SCOPE_CATALOG_WRITE})
   public void testCreateAndGet() throws Exception {
     final String imageALink = obtainLinkOfImage(imageAId);
     final String imageBLink = obtainLinkOfImage(imageBId);
-    
+
     final String title = "New Product";
     final String ELECTRONICS = "Electronics";
     final String MOBILE = "Mobile";
@@ -151,7 +157,7 @@ public class ProductTest {
         .andExpect(jsonPath("$._links.images", notNullValue()))
         .andDo(document("product/create", links(), requestFields(
             fieldWithPath("images").type(JsonFieldType.ARRAY)
-                .description("links of referred ProductImage")),responseFields()))
+                .description("links of referred ProductImage")), responseFields()))
         .andReturn().getResponse().getContentAsString();
 
     String productId = Stream
@@ -175,6 +181,7 @@ public class ProductTest {
   }
 
   @Test
+  @WithMockUser(username = "catalog_ops", authorities = {SCOPE_CATALOG_READ, SCOPE_CATALOG_WRITE})
   public void testUpdate() throws Exception {
     // preset catalog
     final String imageALink = obtainLinkOfImage(imageAId);
@@ -226,9 +233,10 @@ public class ProductTest {
         .andExpect(status().isOk()).andExpect(jsonPath("$._embedded.productImages", hasSize(2)))
         .andExpect(jsonPath("$._embedded.productImages[0]._links.self.href", endsWith(imageBId)))
         .andExpect(jsonPath("$._embedded.productImages[1]._links.self.href", endsWith(imageCId)));
-      }
+  }
 
   @Test
+  @WithMockUser(username = "catalog_ops", authorities = {SCOPE_CATALOG_READ, SCOPE_CATALOG_WRITE})
   public void testDelete() throws Exception {
     // preset catalog
     final String imageALink = obtainLinkOfImage(imageAId);

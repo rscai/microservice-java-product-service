@@ -40,6 +40,7 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.restdocs.payload.PayloadDocumentation;
 import org.springframework.restdocs.payload.RequestFieldsSnippet;
 import org.springframework.restdocs.payload.ResponseFieldsSnippet;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -47,11 +48,14 @@ import org.springframework.test.web.servlet.MockMvc;
 @ActiveProfiles({"test"})
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CatalogApplication.class)
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 @AutoConfigureRestDocs
 public class ProductImageTest {
 
   private static final String ENDPOINT = "/productImages";
+  private static final String SCOPE_CATALOG_READ = "SCOPE_catalog.read";
+  private static final String SCOPE_CATALOG_WRITE = "SCOPE_catalog.write";
+
   @Autowired
   private MockMvc mvc;
   @Autowired
@@ -80,13 +84,14 @@ public class ProductImageTest {
             fieldWithPath("updatedAt").type("Date")
                 .description("timestamp of resource updated")).and(descriptors);
   }
-  
+
   @After
   public void tearDown() {
     imageRepository.deleteAll();
   }
 
   @Test
+  @WithMockUser(username = "catalog_ops", authorities = {SCOPE_CATALOG_READ, SCOPE_CATALOG_WRITE})
   public void testSaveAndGetOne() throws Exception {
     final String src = "https://aaa.bbb.ccc/ddd.png";
     ProductImage newImage = new ProductImage();
@@ -120,6 +125,7 @@ public class ProductImageTest {
   }
 
   @Test
+  @WithMockUser(username = "catalog_ops", authorities = {SCOPE_CATALOG_READ, SCOPE_CATALOG_WRITE})
   public void testUpdate() throws Exception {
     final String newSrc = "https://dd.ee.ff/gg.png";
     ProductImage newImage = new ProductImage();
@@ -151,6 +157,7 @@ public class ProductImageTest {
   }
 
   @Test
+  @WithMockUser(username = "catalog_ops", authorities = {SCOPE_CATALOG_READ, SCOPE_CATALOG_WRITE})
   public void testDelete() throws Exception {
     ProductImage newImage = new ProductImage();
     newImage.setSrc("https://aaa.bbb.ccc/ddd.png");
