@@ -9,7 +9,19 @@ spring:
       username: mongoadmin
       password: secret
       authentication-database: admin
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9103/uaa/token_keys
 eureka:
   client:
     serviceUrl: 
       defaultZone: http://localhost:9001/eureka/
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.web.HttpLogging: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
